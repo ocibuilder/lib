@@ -6,7 +6,6 @@ import (
 	"testing"
 
 	"github.com/docker/docker/api/types"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
 	"github.com/ocibuilder/ocibuilder/pkg/command"
 	"github.com/ocibuilder/ocibuilder/pkg/util"
 	"github.com/stretchr/testify/assert"
@@ -70,7 +69,7 @@ var cli = Client{
 	Logger: util.GetLogger(true),
 }
 
-var ociBuildOptions = v1alpha1.OCIBuildOptions{
+var ociBuildOptions = types.BuildOptions{
 	Ctx:           context.Background(),
 	ContextPath:   ".",
 	StorageDriver: "vfs",
@@ -86,7 +85,7 @@ var expectedBuildCommand = command.Builder("buildah").Command("bud").Flags([]com
 	{Name: "t", Value: "image-name:v0.1.0", Short: true, OmitEmpty: true},
 }...).Args(".").Build()
 
-var ociPullOptions = v1alpha1.OCIPullOptions{
+var ociPullOptions = types.PullOptions{
 	Ctx: context.Background(),
 	Ref: "image-name",
 	ImagePullOptions: types.ImagePullOptions{
@@ -98,7 +97,7 @@ var expectedPullCommand = command.Builder("buildah").Command("pull").Flags([]com
 	{Name: "creds", Value: "this-is-my-auth", Short: false, OmitEmpty: true},
 }...).Args("image-name").Build()
 
-var ociPushOptions = v1alpha1.OCIPushOptions{
+var ociPushOptions = types.PushOptions{
 	Ctx: context.Background(),
 	Ref: "image-name",
 	ImagePushOptions: types.ImagePushOptions{
@@ -110,7 +109,7 @@ var expectedPushCommand = command.Builder("buildah").Command("push").Flags([]com
 	{Name: "creds", Value: "this-is-my-auth", Short: false, OmitEmpty: true},
 }...).Args("image-name").Build()
 
-var ociRemoveOptions = v1alpha1.OCIRemoveOptions{
+var ociRemoveOptions = types.RemoveOptions{
 	Image:              "image-name",
 	Ctx:                context.Background(),
 	ImageRemoveOptions: types.ImageRemoveOptions{},
@@ -118,7 +117,7 @@ var ociRemoveOptions = v1alpha1.OCIRemoveOptions{
 
 var expectedRemoveCommand = command.Builder("buildah").Command("rmi").Args("image-name").Build()
 
-var ociLoginOptions = v1alpha1.OCILoginOptions{
+var ociLoginOptions = types.LoginOptions{
 	Ctx:        context.Background(),
 	AuthConfig: authConfig,
 }

@@ -24,7 +24,6 @@ import (
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/client"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
 	"github.com/sirupsen/logrus"
 )
 
@@ -35,49 +34,49 @@ type Client struct {
 }
 
 // ImageBuild conducts an image build with Docker using Beval
-func (cli Client) ImageBuild(options v1alpha1.OCIBuildOptions) (v1alpha1.OCIBuildResponse, error) {
+func (cli Client) ImageBuild(options types.BuildOptions) (types.BuildResponse, error) {
 	apiCli := cli.APIClient
 	res, err := apiCli.ImageBuild(options.Ctx, options.Context, options.ImageBuildOptions)
 	if err != nil {
-		return v1alpha1.OCIBuildResponse{}, err
+		return types.BuildResponse{}, err
 	}
-	return v1alpha1.OCIBuildResponse{
+	return types.BuildResponse{
 		ImageBuildResponse: res,
 	}, nil
 }
 
 // ImagePull conducts an image pull with Docker using Beval
-func (cli Client) ImagePull(options v1alpha1.OCIPullOptions) (v1alpha1.OCIPullResponse, error) {
+func (cli Client) ImagePull(options types.PullOptions) (types.PullResponse, error) {
 	apiCli := cli.APIClient
 	res, err := apiCli.ImagePull(options.Ctx, options.Ref, options.ImagePullOptions)
 	if err != nil {
-		return v1alpha1.OCIPullResponse{}, err
+		return types.PullResponse{}, err
 	}
-	return v1alpha1.OCIPullResponse{
+	return types.PullResponse{
 		Body: res,
 	}, nil
 }
 
 // ImagePush conducts an image push with Docker using Beval
-func (cli Client) ImagePush(options v1alpha1.OCIPushOptions) (v1alpha1.OCIPushResponse, error) {
+func (cli Client) ImagePush(options types.PushOptions) (types.PushResponse, error) {
 	apiCli := cli.APIClient
 	res, err := apiCli.ImagePush(options.Ctx, options.Ref, options.ImagePushOptions)
 	if err != nil {
-		return v1alpha1.OCIPushResponse{}, err
+		return types.PushResponse{}, err
 	}
-	return v1alpha1.OCIPushResponse{
+	return types.PushResponse{
 		Body: res,
 	}, nil
 }
 
 // ImageRemove conducts an image remove with Docker using Beval
-func (cli Client) ImageRemove(options v1alpha1.OCIRemoveOptions) (v1alpha1.OCIRemoveResponse, error) {
+func (cli Client) ImageRemove(options types.RemoveOptions) (types.RemoveResponse, error) {
 	apiCli := cli.APIClient
 	res, err := apiCli.ImageRemove(options.Ctx, options.Image, options.ImageRemoveOptions)
 	if err != nil {
-		return v1alpha1.OCIRemoveResponse{}, err
+		return types.RemoveResponse{}, err
 	}
-	return v1alpha1.OCIRemoveResponse{
+	return types.RemoveResponse{
 		Response: res,
 	}, nil
 }
@@ -103,13 +102,13 @@ func (cli Client) ImageHistory(imageId string) ([]image.HistoryResponseItem, err
 }
 
 // RegistryLogin conducts a registry login with Docker using Beval
-func (cli Client) RegistryLogin(options v1alpha1.OCILoginOptions) (v1alpha1.OCILoginResponse, error) {
+func (cli Client) RegistryLogin(options types.LoginOptions) (types.LoginResponse, error) {
 	apiCli := cli.APIClient
 	res, err := apiCli.RegistryLogin(options.Ctx, options.AuthConfig)
 	if err != nil {
-		return v1alpha1.OCILoginResponse{}, err
+		return types.LoginResponse{}, err
 	}
-	return v1alpha1.OCILoginResponse{
+	return types.LoginResponse{
 		AuthenticateOKBody: res,
 	}, nil
 }

@@ -37,7 +37,7 @@ func TestBuilder_Build(t *testing.T) {
 		Provenance: []*v1alpha1.BuildProvenance{},
 	}
 
-	res := make(chan v1alpha1.OCIBuildResponse)
+	res := make(chan types.BuildResponse)
 	errChan := make(chan error)
 	finished := make(chan bool)
 
@@ -94,9 +94,9 @@ func TestBuilder_Purge(t *testing.T) {
 
 }
 
-func (t testClient) ImageBuild(options v1alpha1.OCIBuildOptions) (v1alpha1.OCIBuildResponse, error) {
+func (t testClient) ImageBuild(options types.BuildOptions) (types.BuildResponse, error) {
 	body := ioutil.NopCloser(strings.NewReader("image build response"))
-	return v1alpha1.OCIBuildResponse{
+	return types.BuildResponse{
 		ImageBuildResponse: types.ImageBuildResponse{
 			Body:   body,
 			OSType: "",
@@ -104,14 +104,14 @@ func (t testClient) ImageBuild(options v1alpha1.OCIBuildOptions) (v1alpha1.OCIBu
 	}, nil
 }
 
-func (t testClient) ImagePull(options v1alpha1.OCIPullOptions) (v1alpha1.OCIPullResponse, error) {
-	return v1alpha1.OCIPullResponse{}, nil
+func (t testClient) ImagePull(options types.PullOptions) (types.PullResponse, error) {
+	return types.PullResponse{}, nil
 }
-func (t testClient) ImagePush(options v1alpha1.OCIPushOptions) (v1alpha1.OCIPushResponse, error) {
-	return v1alpha1.OCIPushResponse{}, nil
+func (t testClient) ImagePush(options types.PushOptions) (types.PushResponse, error) {
+	return types.PushResponse{}, nil
 }
-func (t testClient) ImageRemove(options v1alpha1.OCIRemoveOptions) (v1alpha1.OCIRemoveResponse, error) {
-	return v1alpha1.OCIRemoveResponse{}, nil
+func (t testClient) ImageRemove(options types.RemoveOptions) (types.RemoveResponse, error) {
+	return types.RemoveResponse{}, nil
 }
 func (t testClient) ImageInspect(imageId string) (types.ImageInspect, error) {
 	return types.ImageInspect{}, nil
@@ -119,8 +119,8 @@ func (t testClient) ImageInspect(imageId string) (types.ImageInspect, error) {
 func (t testClient) ImageHistory(imageId string) ([]image.HistoryResponseItem, error) {
 	return nil, nil
 }
-func (t testClient) RegistryLogin(options v1alpha1.OCILoginOptions) (v1alpha1.OCILoginResponse, error) {
-	return v1alpha1.OCILoginResponse{}, nil
+func (t testClient) RegistryLogin(options types.LoginOptions) (types.LoginResponse, error) {
+	return types.LoginResponse{}, nil
 }
 func (t testClient) GenerateAuthRegistryString(auth types.AuthConfig) string {
 	return ""

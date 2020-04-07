@@ -103,20 +103,20 @@ var expectedRecord = store.Record{
 
 var expectedPrefix = `-----BEGIN PGP SIGNATURE-----`
 
-func (t testClientMetadata) ImageBuild(options v1alpha1.OCIBuildOptions) (v1alpha1.OCIBuildResponse, error) {
-	return v1alpha1.OCIBuildResponse{}, nil
+func (t testClientMetadata) ImageBuild(options types.BuildOptions) (types.BuildResponse, error) {
+	return types.BuildResponse{}, nil
 }
 
-func (t testClientMetadata) ImagePull(options v1alpha1.OCIPullOptions) (v1alpha1.OCIPullResponse, error) {
-	return v1alpha1.OCIPullResponse{}, nil
+func (t testClientMetadata) ImagePull(options types.PullOptions) (types.PullResponse, error) {
+	return types.PullResponse{}, nil
 }
 
-func (t testClientMetadata) ImagePush(options v1alpha1.OCIPushOptions) (v1alpha1.OCIPushResponse, error) {
-	return v1alpha1.OCIPushResponse{}, nil
+func (t testClientMetadata) ImagePush(options types.PushOptions) (types.PushResponse, error) {
+	return types.PushResponse{}, nil
 }
 
-func (t testClientMetadata) ImageRemove(options v1alpha1.OCIRemoveOptions) (v1alpha1.OCIRemoveResponse, error) {
-	return v1alpha1.OCIRemoveResponse{}, nil
+func (t testClientMetadata) ImageRemove(options types.RemoveOptions) (types.RemoveResponse, error) {
+	return types.RemoveResponse{}, nil
 }
 
 func (t testClientMetadata) ImageInspect(imageId string) (types.ImageInspect, error) {
@@ -134,8 +134,8 @@ func (t testClientMetadata) ImageHistory(imageId string) ([]image.HistoryRespons
 	}}, nil
 }
 
-func (t testClientMetadata) RegistryLogin(options v1alpha1.OCILoginOptions) (v1alpha1.OCILoginResponse, error) {
-	return v1alpha1.OCILoginResponse{}, nil
+func (t testClientMetadata) RegistryLogin(options types.LoginOptions) (types.LoginResponse, error) {
+	return types.LoginResponse{}, nil
 }
 
 func (t testClientMetadata) GenerateAuthRegistryString(auth types.AuthConfig) string {

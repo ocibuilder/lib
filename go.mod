@@ -22,6 +22,7 @@ require (
 	github.com/mholt/archiver v3.1.1+incompatible
 	github.com/moby/buildkit v0.6.3
 	github.com/nwaples/rardecode v1.1.0 // indirect
+	github.com/ocibuilder/api v0.0.0-20200406183809-09af1c540f25 // indirect
 	github.com/ocibuilder/gofeas v1.0.0
 	github.com/ocibuilder/ocibuilder v0.0.0-20200401153708-0390955eae15
 	github.com/pierrec/lz4 v2.4.1+incompatible // indirect

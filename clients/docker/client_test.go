@@ -9,32 +9,31 @@ import (
 	"github.com/docker/docker/api/types/registry"
 	"github.com/docker/docker/client"
 	"github.com/ocibuilder/lib/util"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestClient_ImageBuild(t *testing.T) {
-	_, err := cli.ImageBuild(v1alpha1.OCIBuildOptions{})
+	_, err := cli.ImageBuild(types.BuildOptions{})
 	assert.Equal(t, nil, err)
 }
 
 func TestClient_ImagePull(t *testing.T) {
-	_, err := cli.ImagePull(v1alpha1.OCIPullOptions{})
+	_, err := cli.ImagePull(types.PullOptions{})
 	assert.Equal(t, nil, err)
 }
 
 func TestClient_ImagePush(t *testing.T) {
-	_, err := cli.ImagePush(v1alpha1.OCIPushOptions{})
+	_, err := cli.ImagePush(types.PushOptions{})
 	assert.Equal(t, nil, err)
 }
 
 func TestClient_ImageRemove(t *testing.T) {
-	_, err := cli.ImageRemove(v1alpha1.OCIRemoveOptions{})
+	_, err := cli.ImageRemove(types.RemoveOptions{})
 	assert.Equal(t, nil, err)
 }
 
 func TestClient_RegistryLogin(t *testing.T) {
-	_, err := cli.RegistryLogin(v1alpha1.OCILoginOptions{})
+	_, err := cli.RegistryLogin(types.LoginOptions{})
 	assert.Equal(t, nil, err)
 }
 
