@@ -24,10 +24,10 @@ import (
 	"time"
 
 	docker "github.com/docker/docker/api/types"
+	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/ocibuilder/lib/common"
 	"github.com/ocibuilder/lib/parser"
 	"github.com/ocibuilder/lib/validate"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
 	"github.com/sirupsen/logrus"
 )
 

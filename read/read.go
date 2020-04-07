@@ -24,9 +24,9 @@ import (
 
 	"github.com/artbegolli/yenv"
 	"github.com/ghodss/yaml"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
-	"github.com/ocibuilder/ocibuilder/pkg/overlay"
-	"github.com/ocibuilder/ocibuilder/pkg/validate"
+	"github.com/ocibuilder/api/apis/beval/v1alpha1"
+	"github.com/ocibuilder/lib/overlay"
+	"github.com/ocibuilder/lib/validate"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"github.com/tidwall/sjson"

@@ -28,10 +28,10 @@ import (
 	cmdcore "github.com/k14s/ytt/pkg/cmd/core"
 	cmdtpl "github.com/k14s/ytt/pkg/cmd/template"
 	"github.com/k14s/ytt/pkg/files"
+	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/ocibuilder/lib/common"
 	"github.com/ocibuilder/lib/request"
 	"github.com/ocibuilder/lib/util"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
 	"github.com/pkg/errors"
 )
 

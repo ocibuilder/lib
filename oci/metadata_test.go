@@ -22,10 +22,10 @@ import (
 
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/image"
+	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/ocibuilder/gofeas"
 	"github.com/ocibuilder/lib/store"
 	"github.com/ocibuilder/lib/util"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
 	"github.com/ocibuilder/ocibuilder/testing/dummy"
 	"github.com/stretchr/testify/assert"
 )

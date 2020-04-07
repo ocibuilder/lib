@@ -22,9 +22,9 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/ocibuilder/gofeas"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
-	"github.com/ocibuilder/ocibuilder/pkg/store"
+	"github.com/ocibuilder/lib/store"
 	"github.com/sirupsen/logrus"
 )
 

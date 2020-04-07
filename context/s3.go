@@ -25,9 +25,9 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	awss3 "github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
+	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/ocibuilder/lib/common"
 	"github.com/ocibuilder/lib/util"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
 	"k8s.io/client-go/kubernetes"
 )
 

@@ -25,6 +25,7 @@ import (
 	docker "github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/api/types/registry"
+	"github.com/ocibuilder/lib/clients/types"
 	"github.com/ocibuilder/lib/command"
 	"github.com/sirupsen/logrus"
 )
@@ -140,7 +141,7 @@ func (cli Client) ImageRemove(options types.RemoveOptions) (types.RemoveResponse
 //
 // The type currently returned by running buildah inspect varies greatly to docker image inspect
 // issues have been created to manage this and have a more representative mapping between buildah and docker
-func (cli Client) ImageInspect(imageId string) (types.ImageInspect, error) {
+func (cli Client) ImageInspect(imageId string) (docker.ImageInspect, error) {
 
 	inspectFlag := command.Flag{
 		Name: "type", Value: "image", Short: false, OmitEmpty: false,
@@ -152,17 +153,17 @@ func (cli Client) ImageInspect(imageId string) (types.ImageInspect, error) {
 	stdout, _, err := execute(&cmd)
 	if err != nil {
 		cli.Logger.WithError(err).Errorln("error building image...")
-		return types.ImageInspect{}, err
+		return docker.ImageInspect{}, err
 	}
-	var imageInspect types.ImageInspect
+	var imageInspect docker.ImageInspect
 	res, err := ioutil.ReadAll(stdout)
 	if err != nil {
-		return types.ImageInspect{}, err
+		return docker.ImageInspect{}, err
 	}
 	if err := json.Unmarshal(res, &imageInspect); err != nil {
-		return types.ImageInspect{}, err
+		return docker.ImageInspect{}, err
 	}
-	return types.ImageInspect{}, nil
+	return docker.ImageInspect{}, nil
 }
 
 // ImageHistory is TBC for buildah client
@@ -196,7 +197,7 @@ func (cli Client) RegistryLogin(options types.LoginOptions) (types.LoginResponse
 }
 
 // GenerateAuthRegistryString generates the auth registry string for pushing and pulling images targeting Buildah
-func (cli Client) GenerateAuthRegistryString(auth types.AuthConfig) string {
+func (cli Client) GenerateAuthRegistryString(auth docker.AuthConfig) string {
 	return fmt.Sprintf("%s:%s", auth.Username, auth.Password)
 }
 

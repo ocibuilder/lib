@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
+	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/stretchr/testify/assert"
 )
 

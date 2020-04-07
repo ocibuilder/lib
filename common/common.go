@@ -16,7 +16,7 @@ limitations under the License.
 
 package common
 
-import "github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder"
+import "github.com/ocibuilder/api/apis/beval"
 
 // Controller environment variables
 const (

@@ -23,7 +23,7 @@ import (
 	"text/template"
 
 	"github.com/gobuffalo/packr"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
+	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 )
 
 func GenerateSpecification(generator v1alpha1.SpecGenerator, dry bool) error {

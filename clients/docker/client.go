@@ -21,9 +21,10 @@ import (
 	"encoding/base64"
 	"encoding/json"
 
-	"github.com/docker/docker/api/types"
+	docker "github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/client"
+	"github.com/ocibuilder/lib/clients/types"
 	"github.com/sirupsen/logrus"
 )
 
@@ -82,11 +83,11 @@ func (cli Client) ImageRemove(options types.RemoveOptions) (types.RemoveResponse
 }
 
 // ImageInspect conducts an inspect of a built image with Docker using Beval
-func (cli Client) ImageInspect(imageId string) (types.ImageInspect, error) {
+func (cli Client) ImageInspect(imageId string) (docker.ImageInspect, error) {
 	apiCli := cli.APIClient
 	res, _, err := apiCli.ImageInspectWithRaw(context.Background(), imageId)
 	if err != nil {
-		return types.ImageInspect{}, err
+		return docker.ImageInspect{}, err
 	}
 	return res, nil
 }
@@ -114,7 +115,7 @@ func (cli Client) RegistryLogin(options types.LoginOptions) (types.LoginResponse
 }
 
 // GenerateAuthRegistryString generates the auth registry string for pushing and pulling images targeting the Docker daemon
-func (cli Client) GenerateAuthRegistryString(auth types.AuthConfig) string {
+func (cli Client) GenerateAuthRegistryString(auth docker.AuthConfig) string {
 	encodedJSON, err := json.Marshal(auth)
 	if err != nil {
 		cli.Logger.WithError(err).Errorln("error trying to marshall auth config")

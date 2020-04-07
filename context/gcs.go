@@ -22,9 +22,9 @@ import (
 	"os"
 
 	"cloud.google.com/go/storage"
+	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/ocibuilder/lib/common"
 	"github.com/ocibuilder/lib/util"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
 	"github.com/pkg/errors"
 	"google.golang.org/api/option"
 	"k8s.io/client-go/kubernetes"

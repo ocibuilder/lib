@@ -23,12 +23,12 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/ocibuilder/gofeas"
 	"github.com/ocibuilder/lib/buildah"
 	"github.com/ocibuilder/lib/crypto"
 	"github.com/ocibuilder/lib/store"
 	"github.com/ocibuilder/lib/store/grafeas"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
 	"github.com/sirupsen/logrus"
 )
 

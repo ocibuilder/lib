@@ -24,7 +24,7 @@ import (
 	"strings"
 
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
+	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/sirupsen/logrus"
 )
 

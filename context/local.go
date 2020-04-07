@@ -19,8 +19,8 @@ package context
 import (
 	"errors"
 
+	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/ocibuilder/lib/util"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
 )
 
 // LocalBuildContextReader implements BuildContextReader for local build contexts

@@ -5,9 +5,10 @@ import (
 	"io"
 	"testing"
 
-	"github.com/docker/docker/api/types"
-	"github.com/ocibuilder/ocibuilder/pkg/command"
-	"github.com/ocibuilder/ocibuilder/pkg/util"
+	docker "github.com/docker/docker/api/types"
+	"github.com/ocibuilder/lib/clients/types"
+	"github.com/ocibuilder/lib/command"
+	"github.com/ocibuilder/lib/util"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -73,7 +74,7 @@ var ociBuildOptions = types.BuildOptions{
 	Ctx:           context.Background(),
 	ContextPath:   ".",
 	StorageDriver: "vfs",
-	ImageBuildOptions: types.ImageBuildOptions{
+	ImageBuildOptions: docker.ImageBuildOptions{
 		Dockerfile: "./Dockerfile",
 		Tags:       []string{"image-name:v0.1.0"},
 	},
@@ -88,7 +89,7 @@ var expectedBuildCommand = command.Builder("buildah").Command("bud").Flags([]com
 var ociPullOptions = types.PullOptions{
 	Ctx: context.Background(),
 	Ref: "image-name",
-	ImagePullOptions: types.ImagePullOptions{
+	ImagePullOptions: docker.ImagePullOptions{
 		RegistryAuth: "this-is-my-auth",
 	},
 }
@@ -100,7 +101,7 @@ var expectedPullCommand = command.Builder("buildah").Command("pull").Flags([]com
 var ociPushOptions = types.PushOptions{
 	Ctx: context.Background(),
 	Ref: "image-name",
-	ImagePushOptions: types.ImagePushOptions{
+	ImagePushOptions: docker.ImagePushOptions{
 		RegistryAuth: "this-is-my-auth",
 	},
 }
@@ -112,7 +113,7 @@ var expectedPushCommand = command.Builder("buildah").Command("push").Flags([]com
 var ociRemoveOptions = types.RemoveOptions{
 	Image:              "image-name",
 	Ctx:                context.Background(),
-	ImageRemoveOptions: types.ImageRemoveOptions{},
+	ImageRemoveOptions: docker.ImageRemoveOptions{},
 }
 
 var expectedRemoveCommand = command.Builder("buildah").Command("rmi").Args("image-name").Build()
@@ -127,7 +128,7 @@ var expectedLoginCommand = command.Builder("buildah").Command("login").Flags([]c
 	{Name: "p", Value: "pass", Short: true, OmitEmpty: true},
 }...).Args("arts-test-registry").Build()
 
-var authConfig = types.AuthConfig{
+var authConfig = docker.AuthConfig{
 	Username:      "user",
 	Password:      "pass",
 	ServerAddress: "arts-test-registry",

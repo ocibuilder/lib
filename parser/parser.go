@@ -29,13 +29,13 @@ import (
 
 	"github.com/gobuffalo/packr"
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
+	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/ocibuilder/lib/common"
 	"github.com/ocibuilder/lib/context"
 	"github.com/ocibuilder/lib/request"
 	"github.com/ocibuilder/lib/util"
 	"github.com/ocibuilder/lib/validate"
 	"github.com/ocibuilder/ocibuilder/ocictl/pkg/utils"
-	"github.com/ocibuilder/ocibuilder/pkg/apis/ocibuilder/v1alpha1"
 	"github.com/pkg/errors"
 )
 

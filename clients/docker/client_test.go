@@ -5,9 +5,10 @@ import (
 	"io"
 	"testing"
 
-	"github.com/docker/docker/api/types"
+	docker "github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/registry"
 	"github.com/docker/docker/client"
+	"github.com/ocibuilder/lib/clients/types"
 	"github.com/ocibuilder/lib/util"
 	"github.com/stretchr/testify/assert"
 )
@@ -48,31 +49,31 @@ var cli = Client{
 	APIClient: testClient{},
 }
 
-var authConfig = types.AuthConfig{
+var authConfig = docker.AuthConfig{
 	Username: "user",
 	Password: "pass",
 }
 
-func (t testClient) ImageBuild(ctx context.Context, context io.Reader, options types.ImageBuildOptions) (types.ImageBuildResponse, error) {
-	return types.ImageBuildResponse{
+func (t testClient) ImageBuild(ctx context.Context, context io.Reader, options docker.ImageBuildOptions) (docker.ImageBuildResponse, error) {
+	return docker.ImageBuildResponse{
 		Body:   nil,
 		OSType: "",
 	}, nil
 }
 
-func (t testClient) ImagePull(ctx context.Context, ref string, options types.ImagePullOptions) (io.ReadCloser, error) {
+func (t testClient) ImagePull(ctx context.Context, ref string, options docker.ImagePullOptions) (io.ReadCloser, error) {
 	return nil, nil
 }
 
-func (t testClient) ImagePush(ctx context.Context, ref string, options types.ImagePushOptions) (io.ReadCloser, error) {
+func (t testClient) ImagePush(ctx context.Context, ref string, options docker.ImagePushOptions) (io.ReadCloser, error) {
 	return nil, nil
 }
 
-func (t testClient) ImageRemove(ctx context.Context, image string, options types.ImageRemoveOptions) ([]types.ImageDeleteResponseItem, error) {
+func (t testClient) ImageRemove(ctx context.Context, image string, options docker.ImageRemoveOptions) ([]docker.ImageDeleteResponseItem, error) {
 	return nil, nil
 }
 
-func (t testClient) RegistryLogin(ctx context.Context, auth types.AuthConfig) (registry.AuthenticateOKBody, error) {
+func (t testClient) RegistryLogin(ctx context.Context, auth docker.AuthConfig) (registry.AuthenticateOKBody, error) {
 	return registry.AuthenticateOKBody{
 		IdentityToken: "",
 		Status:        "",
