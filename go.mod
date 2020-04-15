@@ -15,6 +15,7 @@ require (
 	github.com/ghodss/yaml v1.0.0
 	github.com/gobuffalo/packr v1.30.1
 	github.com/golang/snappy v0.0.1 // indirect
+	github.com/google/martian v2.1.0+incompatible
 	github.com/google/uuid v1.1.1
 	github.com/googleapis/gax-go v2.0.2+incompatible // indirect
 	github.com/imdario/mergo v0.3.9 // indirect
@@ -25,6 +26,8 @@ require (
 	github.com/ocibuilder/api v0.0.0-20200406183809-09af1c540f25
 	github.com/ocibuilder/gofeas v1.0.0
 	github.com/ocibuilder/ocibuilder v0.0.0-20200401153708-0390955eae15
+	github.com/onsi/ginkgo v1.11.0
+	github.com/onsi/gomega v1.7.0
 	github.com/pierrec/lz4 v2.4.1+incompatible // indirect
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.4.2

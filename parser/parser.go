@@ -35,7 +35,6 @@ import (
 	"github.com/ocibuilder/lib/request"
 	"github.com/ocibuilder/lib/util"
 	"github.com/ocibuilder/lib/validate"
-	"github.com/ocibuilder/ocibuilder/ocictl/pkg/utils"
 	"github.com/pkg/errors"
 )
 
@@ -195,7 +194,7 @@ func ParseAnsibleCommands(ansibleStep *v1alpha1.AnsibleStep) ([]byte, error) {
 	var dockerfile []byte
 
 	ansibleTemplateFunc := template.FuncMap{
-		"DirExists": utils.DirExists,
+		"DirExists": util.DirExists,
 		"newLine":   func() string { return "\n" },
 	}
 

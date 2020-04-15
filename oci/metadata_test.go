@@ -24,9 +24,9 @@ import (
 	"github.com/docker/docker/api/types/image"
 	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/ocibuilder/gofeas"
+	"github.com/ocibuilder/lib/fake/testing/dummy"
 	"github.com/ocibuilder/lib/store"
 	"github.com/ocibuilder/lib/util"
-	"github.com/ocibuilder/ocibuilder/testing/dummy"
 	"github.com/stretchr/testify/assert"
 )
 

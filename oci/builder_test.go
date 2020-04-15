@@ -22,11 +22,12 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/docker/docker/api/types"
+	docker "github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/image"
 	"github.com/ocibuilder/api/apis/beval/v1alpha1"
+	"github.com/ocibuilder/lib/clients/types"
+	"github.com/ocibuilder/lib/fake/testing/dummy"
 	"github.com/ocibuilder/lib/util"
-	"github.com/ocibuilder/ocibuilder/testing/dummy"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -97,7 +98,7 @@ func TestBuilder_Purge(t *testing.T) {
 func (t testClient) ImageBuild(options types.BuildOptions) (types.BuildResponse, error) {
 	body := ioutil.NopCloser(strings.NewReader("image build response"))
 	return types.BuildResponse{
-		ImageBuildResponse: types.ImageBuildResponse{
+		ImageBuildResponse: docker.ImageBuildResponse{
 			Body:   body,
 			OSType: "",
 		},
@@ -113,8 +114,8 @@ func (t testClient) ImagePush(options types.PushOptions) (types.PushResponse, er
 func (t testClient) ImageRemove(options types.RemoveOptions) (types.RemoveResponse, error) {
 	return types.RemoveResponse{}, nil
 }
-func (t testClient) ImageInspect(imageId string) (types.ImageInspect, error) {
-	return types.ImageInspect{}, nil
+func (t testClient) ImageInspect(imageId string) (docker.ImageInspect, error) {
+	return docker.ImageInspect{}, nil
 }
 func (t testClient) ImageHistory(imageId string) ([]image.HistoryResponseItem, error) {
 	return nil, nil
@@ -122,7 +123,7 @@ func (t testClient) ImageHistory(imageId string) ([]image.HistoryResponseItem, e
 func (t testClient) RegistryLogin(options types.LoginOptions) (types.LoginResponse, error) {
 	return types.LoginResponse{}, nil
 }
-func (t testClient) GenerateAuthRegistryString(auth types.AuthConfig) string {
+func (t testClient) GenerateAuthRegistryString(auth docker.AuthConfig) string {
 	return ""
 }
 

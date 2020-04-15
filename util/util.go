@@ -19,6 +19,7 @@ package util
 import (
 	"os"
 
+	"github.com/google/martian/log"
 	"github.com/mholt/archiver"
 	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/pkg/errors"
@@ -107,4 +108,26 @@ func ReadCredentials(client kubernetes.Interface, creds *v1alpha1.Credentials) (
 	}
 
 	return "", errors.New("unknown credentials format")
+}
+
+// Exists is a simple function to check if a string exists in an array
+func Exists(a string, list []string) bool {
+	for _, el := range list {
+		if el == a {
+			return true
+		}
+	}
+	return false
+}
+
+// DirExists is a simple function to check if a directory exists
+func DirExists(dirName string) bool {
+	var exists bool
+	if info, err := os.Stat(dirName); err != nil && os.IsNotExist(err) {
+		exists = false
+	} else {
+		exists = info != nil && info.IsDir()
+	}
+	log.Debugf("Directory [ %s ] exists=%t", dirName, exists)
+	return exists
 }

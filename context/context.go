@@ -26,7 +26,6 @@ import (
 	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/ocibuilder/lib/common"
 	"github.com/ocibuilder/lib/util"
-	"github.com/ocibuilder/ocibuilder/ocictl/pkg/utils"
 	"github.com/pkg/errors"
 	"k8s.io/client-go/kubernetes"
 )
@@ -115,7 +114,7 @@ func ExcludeIgnored(directory string) ([]string, error) {
 	ignoredPaths := strings.Split(string(ignored), "\n")
 	var contextPaths []string
 	for _, f := range files {
-		if !utils.Exists(f.Name(), ignoredPaths) {
+		if !util.Exists(f.Name(), ignoredPaths) {
 			contextPaths = append(contextPaths, fmt.Sprintf("%s/%s", directory, f.Name()))
 		}
 	}
