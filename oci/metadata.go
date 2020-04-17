@@ -25,7 +25,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/ocibuilder/gofeas"
-	"github.com/ocibuilder/lib/buildah"
+	"github.com/ocibuilder/lib/clients/buildah"
+	"github.com/ocibuilder/lib/clients/types"
 	"github.com/ocibuilder/lib/crypto"
 	"github.com/ocibuilder/lib/store"
 	"github.com/ocibuilder/lib/store/grafeas"
@@ -50,7 +51,7 @@ func (m MetadataWriter) Write() error {
 	return nil
 }
 
-func (m *MetadataWriter) ParseMetadata(imageName string, cli v1alpha1.BuilderClient, provenance *v1alpha1.BuildProvenance) error {
+func (m *MetadataWriter) ParseMetadata(imageName string, cli types.BuilderClient, provenance *v1alpha1.BuildProvenance) error {
 	log := m.Logger
 
 	if _, ok := cli.(buildah.Client); ok {

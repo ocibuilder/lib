@@ -22,7 +22,7 @@ import (
 	"testing"
 
 	"github.com/ocibuilder/api/apis/beval/v1alpha1"
-	"github.com/ocibuilder/lib/testing/dummy"
+	"github.com/ocibuilder/lib/fake/testing/dummy"
 	"github.com/stretchr/testify/assert"
 )
 

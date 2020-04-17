@@ -20,10 +20,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/docker/docker/api/types"
+	docker "github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/image"
 	"github.com/ocibuilder/api/apis/beval/v1alpha1"
 	"github.com/ocibuilder/gofeas"
+	"github.com/ocibuilder/lib/clients/types"
 	"github.com/ocibuilder/lib/fake/testing/dummy"
 	"github.com/ocibuilder/lib/store"
 	"github.com/ocibuilder/lib/util"
@@ -119,8 +120,8 @@ func (t testClientMetadata) ImageRemove(options types.RemoveOptions) (types.Remo
 	return types.RemoveResponse{}, nil
 }
 
-func (t testClientMetadata) ImageInspect(imageId string) (types.ImageInspect, error) {
-	return types.ImageInspect{
+func (t testClientMetadata) ImageInspect(imageId string) (docker.ImageInspect, error) {
+	return docker.ImageInspect{
 		ID:          "sha256-imageid",
 		RepoDigests: []string{"sha25-de3gie3st"},
 	}, nil
@@ -138,7 +139,7 @@ func (t testClientMetadata) RegistryLogin(options types.LoginOptions) (types.Log
 	return types.LoginResponse{}, nil
 }
 
-func (t testClientMetadata) GenerateAuthRegistryString(auth types.AuthConfig) string {
+func (t testClientMetadata) GenerateAuthRegistryString(auth docker.AuthConfig) string {
 	return ""
 }
 

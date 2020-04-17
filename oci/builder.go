@@ -25,6 +25,7 @@ import (
 
 	docker "github.com/docker/docker/api/types"
 	"github.com/ocibuilder/api/apis/beval/v1alpha1"
+	"github.com/ocibuilder/lib/clients/types"
 	"github.com/ocibuilder/lib/common"
 	"github.com/ocibuilder/lib/parser"
 	"github.com/ocibuilder/lib/validate"
@@ -33,7 +34,7 @@ import (
 
 type Builder struct {
 	Logger     *logrus.Logger
-	Client     v1alpha1.BuilderClient
+	Client     types.BuilderClient
 	Provenance []*v1alpha1.BuildProvenance
 }
 
@@ -78,7 +79,7 @@ func (b *Builder) Build(spec v1alpha1.OCIBuilderSpec, res chan types.BuildRespon
 			Ctx:         context.Background(),
 			ContextPath: opt.BuildContextPath + common.ContextDirectory,
 			Context:     buildContext,
-			ImageBuildOptions: types.ImageBuildOptions{
+			ImageBuildOptions: docker.ImageBuildOptions{
 				Dockerfile: opt.Dockerfile,
 				Tags:       []string{imageName},
 				Context:    buildContext,
@@ -158,7 +159,7 @@ func (b *Builder) Push(spec v1alpha1.OCIBuilderSpec, res chan types.PushResponse
 		pushOptions := types.PushOptions{
 			Ctx: context.Background(),
 			Ref: pushFullImageName,
-			ImagePushOptions: types.ImagePushOptions{
+			ImagePushOptions: docker.ImagePushOptions{
 				RegistryAuth: authString,
 			},
 		}
@@ -212,7 +213,7 @@ func (b *Builder) Pull(spec v1alpha1.OCIBuilderSpec, imageName string, res chan<
 		pullOptions := types.PullOptions{
 			Ctx: context.Background(),
 			Ref: registry + imageName,
-			ImagePullOptions: types.ImagePullOptions{
+			ImagePullOptions: docker.ImagePullOptions{
 				RegistryAuth: authString,
 			},
 		}
@@ -262,7 +263,7 @@ func (b *Builder) Login(spec v1alpha1.OCIBuilderSpec, res chan<- types.LoginResp
 		}
 		loginOptions := types.LoginOptions{
 			Ctx: context.Background(),
-			AuthConfig: types.AuthConfig{
+			AuthConfig: docker.AuthConfig{
 				Username:      username,
 				Password:      password,
 				ServerAddress: loginSpec.Registry,
@@ -291,7 +292,7 @@ func (b *Builder) Purge(imageName string) error {
 	removeOptions := types.RemoveOptions{
 		Image:              imageName,
 		Ctx:                context.Background(),
-		ImageRemoveOptions: types.ImageRemoveOptions{},
+		ImageRemoveOptions: docker.ImageRemoveOptions{},
 	}
 
 	_, err := cli.ImageRemove(removeOptions)

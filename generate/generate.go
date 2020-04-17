@@ -23,10 +23,10 @@ import (
 	"text/template"
 
 	"github.com/gobuffalo/packr"
-	"github.com/ocibuilder/api/apis/beval/v1alpha1"
+	"github.com/ocibuilder/lib/clients/types"
 )
 
-func GenerateSpecification(generator v1alpha1.SpecGenerator, dry bool) error {
+func GenerateSpecification(generator types.SpecGenerator, dry bool) error {
 	spec, err := generator.Generate()
 	if err != nil {
 		return err
